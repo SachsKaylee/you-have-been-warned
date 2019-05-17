@@ -20,4 +20,4 @@ Clear documentation, etc. will follow once ready.
 
     How to get a token? [https://github.com/reactiflux/discord-irc/wiki/Creating-a-discord-bot-&-getting-a-token](https://github.com/reactiflux/discord-irc/wiki/Creating-a-discord-bot-&-getting-a-token)
 
-2. Open a terminal and enter `npm run start`. A browser window with further instructions will now open.
+2. Open a terminal and enter `npm i` followed by `npm run start`. A browser window with further instructions will now open.
