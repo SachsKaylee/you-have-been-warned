@@ -50,14 +50,14 @@ bot.on('message', async msg => {
     }
     // Send messages.
     try {
-      await user.send(`👎 [${msg.guild.name}] You have been warned by <@${msg.author.id}> in channel "${msg.channel.name}" (Reason: ${reason}).`);
+      await user.send(`👎 [${msg.guild.name}] You have been warned by <@${msg.author.id}> in channel "${msg.channel.name}" (Reason: ${reason}). This is warning #${warnings.toString(warningRadix)}`);
     } catch (e) {
       console.error("Failed to send message", e);
       msg.reply(`😭 This could have gone better! ${e.message}`);
       return;
     }
     console.log("Warned", { username: user.username, by: msg.author.username, reason, warnings });
-    msg.channel.send(`👎 "${user.username}" has been warned by "${msg.author.username}" (Reason: ${reason}).`);
+    msg.channel.send(`👎 "${user.username}" has been warned by "${msg.author.username}" (Reason: ${reason}). This is warning #${warnings.toString(warningRadix)}`);
   }
 });
 
