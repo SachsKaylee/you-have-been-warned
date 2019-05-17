@@ -4,12 +4,16 @@ const discord = require("discord.js");
 
 const bot = new discord.Client();
 
+const warningPrefix = "warnings: ";
+const warningRadix = 10;
+
 bot.on("ready", e => {
   console.log("Connected", { username: bot.user.username, id: bot.user.id });
 });
 
-bot.on('message', msg => {
+bot.on('message', async msg => {
   if (msg.content.startsWith("/warn ")) {
+    // Parse command.
     const command = msg.content.substr("/warn ".length);
     const split = command.split(" ");
     let id = "";
@@ -21,19 +25,83 @@ bot.on('message', msg => {
       id = split[0].trim();
       reason = "Pure dark hate"; // TODO: Generate random reason.
     } else {
-      msg.reply(`😭 Whoops! The "${id}". Sorry!`);
+      msg.reply(`😭 Whoops! The format does not look quite right. - Pro Tip: Use \`/warn @${msg.author.username} Your completely arbitrary reason here!\` to warn a user.`);
       return;
     }
+    // Get discord user and server member.
     const user = parseUser(id);
-    if (!user) {
-      msg.reply(`😭 Oh noes! I could not find the user "${id}". Sorry! Pro Tip: Use \`/warn @${msg.author.username} Your completely arbitrary reason here!\` to refer to a user.`);
+    const member = msg.guild.members.get(user.id);
+    if (!user || !member) {
+      msg.reply(`😭 Oh noes! I could not find the user "${id}". Sorry! - Pro Tip: Use \`/warn @${msg.author.username} Your completely arbitrary reason here!\` to warn a user.`);
       return;
     }
-    console.log("Warned", { username: user.username, by: msg.author.username, reason });
-    msg.channel.send(`👎 "${user.username}" has been warned by "${msg.author.username}" (Reason: ${reason}).`)
-    user.send(`👎 [${msg.guild.name}] You have been warned by <@${msg.author.id}> in channel "${msg.channel.name}" (Reason: ${reason}).`);
+    // Set roles.
+    let warnings = 0;
+    try {
+      const roles = warningRoles(member);
+      warnings = highestWarningRole(roles) + 1;
+      const newRole = await lazyCreateRole(member.guild, warnings);
+      await member.addRole(newRole);
+      await member.removeRoles(roles);
+    } catch (e) {
+      console.error("Failed to reassign roles", e);
+      msg.reply(`😭 This could have gone better! ${e.message}`);
+      return;
+    }
+    // Send messages.
+    try {
+      await user.send(`👎 [${msg.guild.name}] You have been warned by <@${msg.author.id}> in channel "${msg.channel.name}" (Reason: ${reason}).`);
+    } catch (e) {
+      console.error("Failed to send message", e);
+      msg.reply(`😭 This could have gone better! ${e.message}`);
+      return;
+    }
+    console.log("Warned", { username: user.username, by: msg.author.username, reason, warnings });
+    msg.channel.send(`👎 "${user.username}" has been warned by "${msg.author.username}" (Reason: ${reason}).`);
   }
 });
+
+/**
+ * Creates the given role if it does not exist
+ * @param {discord.Guild} guild The guild.
+ * @param {number} warnings The amount of warnings.
+ */
+const lazyCreateRole = async (guild, warnings) => {
+  const name = warningPrefix + warnings.toString(warningRadix);
+  let role = guild.roles.get(name);
+  if (!role) {
+    role = await guild.createRole({
+      name: name,
+      color: "GREY",
+      mentionable: true,
+      position: 1000 + warnings
+    });
+  }
+  return role;
+}
+
+/**
+ * Finds all roles of the given user.
+ * @param {discord.GuildMember} member The guild member.
+ */
+const warningRoles = member => member.roles.filter(r => r.name.startsWith(warningPrefix)).array();
+
+/**
+ * Finds the role with the highest warning number.
+ * @param {discord.Role[]} roles 
+ */
+const highestWarningRole = roles => {
+  let warning = 0;
+  for (let i = 0; i < roles.length; i++) {
+    const role = roles[i];
+    const str = role.name.substr(warningPrefix.length).trim();
+    const num = parseInt(str, warningRadix);
+    if (num > warning) {
+      warning = num;
+    }
+  }
+  return warning;
+}
 
 bot.login(auth.token);
 
