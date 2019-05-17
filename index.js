@@ -31,7 +31,7 @@ bot.on('message', async msg => {
     }
     // Get discord user and server member.
     const user = parseUser(id);
-    const member = msg.guild.members.get(user.id);
+    const member = user && msg.guild.members.get(user.id);
     if (!user || !member) {
       msg.reply(`😭 Oh noes! I could not find the user "${id}". Sorry! - Pro Tip: Use \`/warn @${msg.author.username} Your completely arbitrary reason here!\` to warn a user.`);
       return;
