@@ -110,8 +110,13 @@ bot.login(auth.token);
  * Parses a user id.
  * @param {string} id The ID, like `<@579045890346713108>`
  */
-const parseUser = (id) => bot.users.get((id.startsWith("<@") && id.endsWith(">"))
-  ? id.substring(2, id.length - 1)
-  : id);
+const parseUser = (id) => {
+  if (id.startsWith("<@!")) {
+    id = id.substring(3, id.length - 1);
+  } else if (id.startsWith("<@")) {
+    id = id.substring(2, id.length - 1);
+  }
+  return bot.users.get(id);
+}
 
 ui.openBrowser();
