@@ -1,11 +1,12 @@
 const ui = require("./ui");
 const auth = require("./auth");
+const config = require("./config.json");
 const discord = require("discord.js");
 
 const bot = new discord.Client();
 
-const warningPrefix = "warnings: ";
-const warningRadix = 10;
+const warningPrefix = config.warningPrefix;
+const warningRadix = config.warningRadix;
 
 bot.on("ready", e => {
   console.log("Connected", { username: bot.user.username, id: bot.user.id });
@@ -113,5 +114,4 @@ const parseUser = (id) => bot.users.get((id.startsWith("<@") && id.endsWith(">")
   ? id.substring(2, id.length - 1)
   : id);
 
-//ui.openBrowser();
-//ui.eventLoop();
+ui.openBrowser();

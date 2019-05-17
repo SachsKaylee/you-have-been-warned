@@ -1,4 +1,4 @@
-const auth = require("./auth.json");
+const auth = require("./config.json");
 
 /**
  * The client ID of the bot.

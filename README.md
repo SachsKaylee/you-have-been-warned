@@ -8,13 +8,16 @@ Clear documentation, etc. will follow once ready.
 
 ## How to run
 
-1. Create an auth.json file. Contents are:
+1. Create an config.json file. Contents are:
 
     ```json
     {
       "id": "579045890346713108",
       "permissions": "8",
-      "token": "YOUR BOT SECRET HERE"
+      "token": "YOUR BOT SECRET HERE",
+      "openBrowser": true,
+      "warningPrefix": "warnings: ",
+      "warningRadix": 10
     }
     ```
 
