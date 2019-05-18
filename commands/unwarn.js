@@ -9,7 +9,7 @@ const warningRadix = config.warningRadix;
 /**
  * This command.
  */
-const command = "warn";
+const command = "unwarn";
 
 /**
  * Handles the given command.
@@ -27,7 +27,7 @@ const handle = async (msg, bot) => {
     reason = split.slice(1).join(" ").trim();
   } else if (split.length === 1) {
     id = split[0].trim();
-    reason = "Pure dark hate"; // TODO: Generate random reason.
+    reason = "Magical unicorn love"; // TODO: Generate random reason.
   } else {
     await msg.reply(`😭 Whoops! The format does not look quite right. - Pro Tip: Use \`/warn @${msg.author.username} Your completely arbitrary reason here!\` to warn a user.`);
     return;
@@ -41,11 +41,13 @@ const handle = async (msg, bot) => {
   }
   // Set roles.
   let warnings = 0;
+  const roles = roleUtil.warningRoles(member);
+  warnings = Math.max(0, roleUtil.highestWarningRole(roles) - 1);
   try {
-    const roles = roleUtil.warningRoles(member);
-    warnings = roleUtil.highestWarningRole(roles) + 1;
-    const newRole = await roleUtil.lazyCreateRole(member.guild, warnings);
-    await member.addRole(newRole);
+    if (warnings !== 0) {
+      const newRole = await roleUtil.lazyCreateRole(member.guild, warnings);
+      await member.addRole(newRole);
+    }
     await member.removeRoles(roles);
   } catch (e) {
     console.error("Failed to reassign roles", e);
@@ -53,10 +55,10 @@ const handle = async (msg, bot) => {
     return;
   }
   // Send messages.
-  try {    
-    console.log("Warned", { username: user.username, by: msg.author.username, reason, warnings });
-    await user.send(`👎 [${msg.guild.name}] You have been warned by <@${msg.author.id}> in channel "${msg.channel.name}". This is warning #${warnings.toString(warningRadix)}. (Reason: ${reason})`);
-    await msg.channel.send(`👎 "${user.username}" has been warned by "${msg.author.username}". This is warning #${warnings.toString(warningRadix)}. (Reason: ${reason})`);
+  try {
+    console.log("Unwarned", { username: user.username, by: msg.author.username, reason, warnings });
+    await user.send(`❤️ [${msg.guild.name}] One of your warnings have been revoked by <@${msg.author.id}> in channel "${msg.channel.name}". Only #${warnings.toString(warningRadix)} warnings left! (Reason: ${reason})`);
+    await msg.channel.send(`❤️ "${user.username}" was unwarned by "${msg.author.username}". Still #${warnings.toString(warningRadix)} warnings left. (Reason: ${reason})`);
   } catch (e) {
     console.error("Failed to send message", e);
     await msg.reply(`😭 I was unable to send some messages! ${e.message}`);
