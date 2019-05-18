@@ -34,7 +34,7 @@ const highestWarningRole = roles => {
  */
 const lazyCreateRole = async (guild, warnings) => {
   const name = warningPrefix + warnings.toString(warningRadix);
-  let role = guild.roles.get(name);
+  let role = guild.roles.find("name", name);
   if (!role) {
     role = await guild.createRole({
       name: name,
