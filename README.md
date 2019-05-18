@@ -8,9 +8,9 @@ A bot that manages user warnings. Use it to enforce roles on your channel or ~~t
 
 This project was born out of a joke among friends for giving each other warnings on Discord for the most ridiculous of things.
 
-At some point manually remember each warning and managing it in discord became way too cumersome and we decided to automate this process.
+At some point manually remember each warning and managing it in Discord became way too cumbersome and we decided to automate this process.
 
-Even though born out of a joke this bot is also suited for practical use.
+Even though born out of a joke, this bot is also suited for practical use.
 
 ## Commands
 
@@ -26,6 +26,8 @@ You're done, enjoy! (**Keep in mind that when using the public bot only admins &
 Want to host the bot on your own server or join in on developing? Then keep reading!
 
 ## How to install on your own hardware
+
+Open a Terminal and enter `git clone https://github.com/PatrickSachs/you-have-been-warned` (git required). Then open the folder.
 
 Copy `config.json.tpl` to `config.json`. Let's go through the settings.
 
@@ -61,4 +63,8 @@ If case you get lost, this is the default config:
 }
 ```
 
-2. Open a terminal and enter `npm i` followed by `npm run start`. A browser window with further instructions will now open.
+Time to spin it up! Open a terminal in the and enter `npm i` followed by `npm run start`(NodeJS required). A browser window will now open that allows you to add the bot to your server.
+
+If no browser window opened go to `https://discordapp.com/oauth2/authorize?&client_id=<CLIENTIDHERE>&scope=bot&permissions=8` (Replace `<CLIENTIDHERE>` with your client ID).
+
+Keep in mind that once you close the Terminal the bot will no longer respond to commands.
