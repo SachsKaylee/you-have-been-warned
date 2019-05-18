@@ -1,19 +1,19 @@
-const auth = require("./config.json");
+const config = require("./config.json");
 
 /**
  * The client ID of the bot.
  */
-const clientId = auth.id;
+const clientId = config.id;
 
 /**
  * The permission bitmask of the bot.
  */
-const permissions = parseInt(auth.permissions, 10);
+const permissions = parseInt(config.permissions, 10);
 
 /**
  * The spooky scary secret.
  */
-const token = auth.token;
+const token = config.token;
 
 /**
  * 
