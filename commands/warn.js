@@ -34,7 +34,7 @@ const handle = async (msg, bot) => {
     id = split[0].trim();
     reason = "Pure dark hate"; // TODO: Generate random reason.
   } else {
-    await msg.reply(`😭 Whoops! The format does not look quite right. - Pro Tip: Use \`/warn @${msg.author.username} Your completely arbitrary reason here!\` to warn a user.`);
+    await msg.reply(`😭 Whoops! The command format does not look quite right. - Pro Tip: Use \`/warn @${msg.author.username} Your completely arbitrary reason here!\` to warn a user.`);
     return;
   }
   // Get discord user and server member.
@@ -57,16 +57,15 @@ const handle = async (msg, bot) => {
     await msg.reply(`😭 I was unable to assign the updated roles! ${e.message}`);
     return;
   }
+  console.log("Warned", { username: user.username, by: msg.author.username, reason, warnings });
   // Send messages.
-  try {    
-    console.log("Warned", { username: user.username, by: msg.author.username, reason, warnings });
+  try {
     await user.send(`👎 [${msg.guild.name}] You have been warned by <@${msg.author.id}> in channel "${msg.channel.name}". This is warning #${warnings.toString(warningRadix)}. (Reason: ${reason})`);
-    await msg.channel.send(`👎 "${user.username}" has been warned by "${msg.author.username}". This is warning #${warnings.toString(warningRadix)}. (Reason: ${reason})`);
   } catch (e) {
     console.error("Failed to send message", e);
-    await msg.reply(`😭 I was unable to send some messages! ${e.message}`);
-    return;
+    await msg.reply(`😭 I was unable to send a private message to <@${user.id}>! ${e.message}`);
   }
+  await msg.channel.send(`👎 "${user.username}" has been warned by "${msg.author.username}". This is warning #${warnings.toString(warningRadix)}. (Reason: ${reason})`);
 }
 
 module.exports = { command, handle };
