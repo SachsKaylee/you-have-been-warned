@@ -1,6 +1,6 @@
 {
-  "id": "579064029956538369",
-  "permissions": "8",
+  "id": "579045890346713108",
+  "permissions": 8,
   "token": "- YOUR TOKEN HERE -",
   "openBrowser": true,
   "warningPrefix": "warnings: ",
