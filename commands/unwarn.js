@@ -17,6 +17,11 @@ const command = "unwarn";
  * @param {discord.Client} bot The bot.
  */
 const handle = async (msg, bot) => {
+  // Permission check
+  if (!userUtil.hasPermission(msg.member)) {
+    await msg.delete();
+    return;
+  }
   // Parse command.
   const suffix = msg.content.substr(commands.commandPrefix(command).length);
   const split = suffix.split(" ");

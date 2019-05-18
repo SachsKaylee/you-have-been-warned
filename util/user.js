@@ -1,4 +1,11 @@
 const discord = require("discord.js");
+const config = require("../config.json");
+
+/**
+ * The permissions for controlling the bot.
+ * @type {string[]}
+ */
+const permissions = config.admins;
 
 /**
  * Parses a user id.
@@ -13,4 +20,10 @@ const parseUser = (id) => {
   return id;
 }
 
-module.exports = { parseUser };
+/**
+ * Checks if the guild member has the permission to control the bot.
+ * @param {discord.GuildMember} member The guild member.
+ */
+const hasPermission = member => permissions.some(p => member.hasPermission(p));
+
+module.exports = { parseUser, hasPermission };
