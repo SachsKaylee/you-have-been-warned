@@ -16,6 +16,7 @@ Even though born out of a joke, this bot is also suited for practical use.
 
 * `/warn @Who Your reason here!` - Issues a warning to the given user. The reason is optional. The user will also be notificed personally about their most evil transgression.
 * `/unwarn @Who Your reason here!` - Revokes a warning from the given user. If you are feeling generous you can also inform the user why a warning was revoked. The user will also be notified personally.
+* `/warnall Your reason here!` - Issues a warning to EVERYONE on your discord server. Yes, everyone includes yourself and this bot.
 
 ## Get the bot on your server
 
