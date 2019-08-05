@@ -4,6 +4,7 @@ const config = require("./config.json");
 const discord = require("discord.js");
 const commands = require("./commands");
 const commandWarn = require("./commands/warn");
+const commandWarnall = require("./commands/warnall");
 const commandUnwarn = require("./commands/unwarn");
 
 const bot = new discord.Client();
@@ -14,6 +15,10 @@ bot.on("ready", e => {
 
 bot.on('message', async msg => {
   try {
+    if (msg.content.startsWith(commands.commandPrefix(commandWarnall.command))) {
+      await commandWarnall.handle(msg, bot);
+      return;
+    }
     if (msg.content.startsWith(commands.commandPrefix(commandWarn.command))) {
       await commandWarn.handle(msg, bot);
       return;
