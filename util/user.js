@@ -5,7 +5,14 @@ const config = require("../config.json");
  * The permissions for controlling the bot.
  * @type {string[]}
  */
-const permissions = config.admins;
+const permissionsWarnBot = config.admins;
+
+/**
+ * The permissions for posting porn images.
+ * @type {string[]}
+ */
+const permissionsPornImageBot = config.pornImageGroups;
+
 
 /**
  * Parses a user id.
@@ -24,6 +31,12 @@ const parseUser = (id) => {
  * Checks if the guild member has the permission to control the bot.
  * @param {discord.GuildMember} member The guild member.
  */
-const hasPermission = member => permissions.some(p => member.hasPermission(p));
+const hasPermission = member => permissionsWarnBot.some(p => member.hasPermission(p));
 
-module.exports = { parseUser, hasPermission };
+/**
+ * Checks if the guild member has the permission to send some porn images.
+ * @param {discord.GuildMember} member The guild member.
+ */
+const hasPermissionPornImages = member => permissionsPornImageBot.some(p => member.hasPermission(p));
+
+module.exports = { parseUser, hasPermission, hasPermissionPornImages };
