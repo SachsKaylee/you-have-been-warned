@@ -1,8 +1,11 @@
 {
-  "id": "579045890346713108",
+  "id": "603990770667487243",
   "permissions": 8,
   "token": "- YOUR TOKEN HERE -",
-  "openBrowser": true,
+  "openBrowser": false,
+  "command_prefix": "/",
+  "pornSitesToCrawl": 3,
+  "pornImageDestinationChannel": " - YOUR CHANNEL HERE -",
   "warningPrefix": "warnings: ",
   "warningRadix": 10,
   "admins": [
@@ -11,5 +14,12 @@
     "BAN_MEMBERS",
     "MANAGE_ROLES",
     "MANAGE_ROLES_OR_PERMISSIONS"
+  ],
+  "pornImageGroups": [
+    "ADMINISTRATOR",
+    "PORN_IMAGES"
+  ],
+  "pornImages": [
+    
   ]
 }

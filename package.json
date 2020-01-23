@@ -9,7 +9,9 @@
   "author": "Patrick Sachs",
   "license": "MIT",
   "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
     "discord.js": "^11.5.0",
-    "open": "^6.3.0"
+    "open": "^6.3.0",
+    "request": "^2.88.0"
   }
 }
