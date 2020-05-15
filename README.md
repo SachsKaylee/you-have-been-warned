@@ -39,13 +39,9 @@ Copy `config.json.tpl` to `config.json`. Let's go through the settings.
 | `token` | Your super secret bot token. See below on how to generate one. |
 | `openBrowser` | If you are running on a GUI based OS(how fancy!) and this setting is `true` a browser window with further instructions will open upon starting the bot. Set to `false` to disable. |
 | `command_prefix` | Defines the prefix for using the pornimage command. Can be any single character. By dfault this is set to `/`. |
-| `pornSitesToCrawl`| Defines the amout of websites that will be crawled in one run. Cannot be higher that the length of your `pornImages` array. By default this is set to `3`. |
-| `pornImageDestinationChannel` | Defines the channel the image will be sent to. Here you can enter any name of a channel that's on your Discordserver. |
 | `warningPrefix` | Users will be given a role based on their warning count. If this value is e.g. set to `"warnings: "` the role of 4 warnings will be named "warnings: 4". |
 | `warningRadix` | Only change this if you want your bot to be super nerdy. E.g. setting this to `16` will make your warning count be displayed in hexadecimal, or `2` for binary. `10` is the sane setting. |
 | `admin` | In order to issue warnings a user must have at least one of these permissions. |
-| `pornImageGroups` | Additional permissions for sending pornImages. |
-| `pornImages` | An array of sites you want to crawl from. For the currently supported sites visit the `pornimage.js` file. |
 
 How to get a token & client ID? [https://github.com/reactiflux/discord-irc/wiki/Creating-a-discord-bot-&-getting-a-token](https://github.com/reactiflux/discord-irc/wiki/Creating-a-discord-bot-&-getting-a-token)
 
@@ -58,8 +54,6 @@ If case you get lost, this is the default config:
   "token": "- YOUR TOKEN HERE -",
   "openBrowser": true,
   "command_prefix": "/",
-  "pornSitesToCrawl": 3,
-  "pornImageDestinationChannel": "- YOUR CHANNEL HERE -",
   "warningPrefix": "warnings: ",
   "warningRadix": 10,
   "admins": [
