@@ -4,8 +4,6 @@
   "token": "- YOUR TOKEN HERE -",
   "openBrowser": false,
   "command_prefix": "/",
-  "pornSitesToCrawl": 3,
-  "pornImageDestinationChannel": " - YOUR CHANNEL HERE -",
   "warningPrefix": "warnings: ",
   "warningRadix": 10,
   "admins": [
