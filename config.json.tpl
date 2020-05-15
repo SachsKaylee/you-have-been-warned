@@ -14,12 +14,5 @@
     "BAN_MEMBERS",
     "MANAGE_ROLES",
     "MANAGE_ROLES_OR_PERMISSIONS"
-  ],
-  "pornImageGroups": [
-    "ADMINISTRATOR",
-    "PORN_IMAGES"
-  ],
-  "pornImages": [
-    
   ]
 }
