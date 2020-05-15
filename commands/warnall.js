@@ -24,7 +24,7 @@ const handle = async (msg, bot) => {
   }
   // Parse command.
   const suffix = msg.content.substr(commands.commandPrefix(command).length);
-  const reason = suffix ? suffix : "Pure dark hate"; // TODO: Generate random reason.
+  const reason = suffix ? suffix : "No reason provided."; // TODO: Generate random reason.
   // Get discord user and server member.
   const members = msg.guild.members;
   for (const [_id, member] of members) {
