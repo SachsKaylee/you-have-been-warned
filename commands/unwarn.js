@@ -32,7 +32,7 @@ const handle = async (msg, bot) => {
     reason = split.slice(1).join(" ").trim();
   } else if (split.length === 1) {
     id = split[0].trim();
-    reason = "Magical unicorn love"; // TODO: Generate random reason.
+    reason = "No reason provided."; // TODO: Generate random reason.
   } else {
     await msg.reply(`😭 Whoops! The format does not look quite right. - Pro Tip: Use \`/warn @${msg.author.username} Your completely arbitrary reason here!\` to warn a user.`);
     return;
