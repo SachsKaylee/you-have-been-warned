@@ -6,7 +6,6 @@ const commands = require("./commands");
 const commandWarn = require("./commands/warn");
 const commandWarnall = require("./commands/warnall");
 const commandUnwarn = require("./commands/unwarn");
-const commandPornImage = require("./commands/pornimage");
 
 const bot = new discord.Client();
 
@@ -26,10 +25,6 @@ bot.on('message', async msg => {
     }
     if (msg.content.startsWith(commands.commandPrefix(commandUnwarn.command))) {
       await commandUnwarn.handle(msg, bot);
-      return;
-    }
-    if(msg.content === config.command_prefix + commandPornImage.command || msg.content.startsWith(commands.commandPrefix(commandPornImage.command))){
-      await commandPornImage.handle(msg,bot);
       return;
     }
     else{
