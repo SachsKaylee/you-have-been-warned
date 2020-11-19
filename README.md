@@ -1,5 +1,7 @@
 # you-have-been-warned 👎
 
+***!! NEW:*** Try out the **Sahnee Bot**, it has the same features & more, but is actively maintained: https://github.com/Sahnee-DE/sahnee-bot ***!!***
+
 A bot that manages user warnings. Use it to enforce roles on your channel or ~~to annoy your friends~~ *other serious stuff*.
 
 <img src="https://patrick-sachs.dev/api/files/serve/screenshot-from-2019-05-18-14-17-49-png-png-dbdf">
